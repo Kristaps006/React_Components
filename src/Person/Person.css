@@ -1,0 +1,8 @@
+.person {
+  background-color: oldlace;
+  border-radius: 3px;
+  text-transform: uppercase;
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  margin-bottom: 10px;
+  width: 400px;
+}
