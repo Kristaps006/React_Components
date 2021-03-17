@@ -1,8 +1,8 @@
-import "./App.css";
-import Person from "./Person/Person.js";
+import classes from "./App.module.css";
+import Person from "../Person/Person.js";
 import React, { Component } from "react";
-import Radium, { StyleRoot } from "radium";
-
+import Aux from "../hoc/Aux";
+import withClass from "../hoc/WithClass";
 //
 //WORKING WITH CLASSES
 //
@@ -10,6 +10,10 @@ import Radium, { StyleRoot } from "radium";
 // These are called components or class components. We have just couple of them in the app
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   state = {
     days: [
       "Sunday",
@@ -28,6 +32,17 @@ class App extends React.Component {
     return daysOfWeek[t];
   };
 
+  /*   
+  CALLING SetState like this ensures you refer to old state 
+    
+this.setState((prevState, props) => {
+    return {
+      persons:persons,
+      daysToString: prevState.daysToString +1
+    }
+  }); 
+ */
+
   deleteDay(index) {
     const day = [...this.state.days];
     //const day = this.state.days.slice(); it is the same as slice, we need to create new array to mutate it
@@ -44,18 +59,18 @@ class App extends React.Component {
     };
 
     return (
-      <StyleRoot>
-        <div>
-          <button style={style}>Press Me</button>
+      <Aux>
+        <button style={style}>Press Me</button>
 
-          {this.state.days.map((days, index) => {
-            return <Person click={() => this.deleteDay(index)} test={days} />;
-          })}
+        {this.state.days.map((days, index) => {
+          return <Person click={() => this.deleteDay(index)} test={days} />;
+        })}
 
-          <Person today={this.daysToString()} />
-          <Person today={this.daysToString()}></Person>
-        </div>
-      </StyleRoot>
+        <Person today={this.daysToString()} />
+        <Person today={this.daysToString()}></Person>
+        <button className={classes.Button}>Second button </button>
+        <p className={classes.p}>Whats up</p>
+      </Aux>
     );
   }
 }
@@ -119,4 +134,4 @@ const App = (props) => {
 };
  */
 
-export default Radium(App);
+export default withClass(App, classes.App);

@@ -1,0 +1,17 @@
+.App {
+  text-align: center;
+}
+
+.Button {
+  background-color: green;
+  text-transform: uppercase;
+}
+
+.p {
+  color: red;
+}
+
+.Button:hover {
+  background-color: blue;
+  text-transform: lowercase;
+}
